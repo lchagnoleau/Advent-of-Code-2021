@@ -3,7 +3,7 @@ pub struct Day3_2<'a> {
 }
 
 impl Day3_2<'_> {
-    pub fn result(&self) {
+    pub fn result(&self) -> i32 {
         let v_input = read_input(&self.input);
         let bits_number = v_input[0].len();
 
@@ -64,10 +64,32 @@ impl Day3_2<'_> {
         let oxy = isize::from_str_radix(&v_oxy[0], 2).unwrap();
         let co2 = isize::from_str_radix(&v_co2[0], 2).unwrap();
 
-        println!("Day 3 Part 2 result : {}", oxy * co2);
+        let result = oxy as i32 * co2 as i32;
+
+        println!("Day 3 Part 2 result : {}", result);
+        result
     }
 }
 
 fn read_input(input_string: &str)-> Vec<String> {
     input_string.split('\n').map(|s| s.to_string()).collect()
+}
+
+#[test]
+fn result_test() {
+    let test_input: &str = r#"00100
+11110
+10110
+10111
+10101
+01111
+00111
+11100
+10000
+11001
+00010
+01010"#;
+
+    let t = Day3_2 {input: test_input};
+    assert_eq!(t.result(), 230);
 }

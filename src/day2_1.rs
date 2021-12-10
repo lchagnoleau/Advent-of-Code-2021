@@ -3,7 +3,7 @@ pub struct Day2_1<'a> {
 }
 
 impl Day2_1<'_> {
-    pub fn result(&self) {
+    pub fn result(&self) -> i32 {
         let v_input = read_input(&self.input);
         let mut h_position = 0i32; // Horizontal position
         let mut d_position = 0i32; // Depth position
@@ -15,7 +15,9 @@ impl Day2_1<'_> {
                 _ => println!("cmd {} is not considered", cmd)
             }
         }
-        println!("Day 2 Part 1 result : {}", h_position * d_position);
+        let result = h_position * d_position;
+        println!("Day 2 Part 1 result : {}", result);
+        result
     }
 }
 
@@ -33,4 +35,17 @@ fn read_input(input_string: &str) -> Vec<(String, i32)> {
     }
 
     v_cmd
+}
+
+#[test]
+fn result_test() {
+    let test_input: &str = r#"forward 5
+down 5
+forward 8
+up 3
+down 8
+forward 2"#;
+
+    let t = Day2_1 {input: test_input};
+    assert_eq!(t.result(), 150);
 }
