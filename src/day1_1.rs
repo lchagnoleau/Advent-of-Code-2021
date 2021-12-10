@@ -19,8 +19,6 @@ impl Day1_1 {
 }
 
 fn read_input(filename: &str)-> Vec<i32> {
-    println!("In file {}", filename);
-
     let contents = fs::read_to_string(filename)
         .expect("Unable to open");
 
