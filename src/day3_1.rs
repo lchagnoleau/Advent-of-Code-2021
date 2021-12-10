@@ -1,12 +1,10 @@
-use std::fs;
-
-pub struct Day3_1 {
-    pub input_file: String
+pub struct Day3_1<'a> {
+    pub input: &'a str
 }
 
-impl Day3_1 {
+impl Day3_1<'_> {
     pub fn result(&self) {
-        let v_input = read_input(&self.input_file);
+        let v_input = read_input(&self.input);
 
         let mut gamma = String::from("");
         let mut epsilon = String::from("");
@@ -39,9 +37,6 @@ impl Day3_1 {
     }
 }
 
-fn read_input(filename: &str)-> Vec<String> {
-    let contents = fs::read_to_string(filename)
-        .expect("Unable to open");
-
-    contents.split('\n').map(|s| s.to_string()).collect()
+fn read_input(input_string: &str)-> Vec<String> {
+    input_string.split('\n').map(|s| s.to_string()).collect()
 }

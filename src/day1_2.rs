@@ -1,12 +1,10 @@
-use std::fs;
-
-pub struct Day1_2 {
-    pub input_file: String
+pub struct Day1_2<'a> {
+    pub input: &'a str
 }
 
-impl Day1_2 {
+impl Day1_2<'_> {
     pub fn result(&self) {
-        let v_input = read_input(&self.input_file);
+        let v_input = read_input(&self.input);
         let mut three_measurement_sliding = vec![v_input[0] + v_input[1] + v_input[2]];
 
         for i in 1..v_input.len() {
@@ -32,9 +30,6 @@ impl Day1_2 {
     }
 }
 
-fn read_input(filename: &str)-> Vec<i32> {
-    let contents = fs::read_to_string(filename)
-        .expect("Unable to open");
-
-    contents.split('\n').map(|x| x.parse::<i32>().unwrap()).collect::<Vec<i32>>()
+fn read_input(input_string: &str)-> Vec<i32> {
+    input_string.split('\n').map(|x| x.parse::<i32>().unwrap()).collect::<Vec<i32>>()
 }

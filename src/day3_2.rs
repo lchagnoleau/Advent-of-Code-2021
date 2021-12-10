@@ -1,12 +1,10 @@
-use std::fs;
-
-pub struct Day3_2 {
-    pub input_file: String
+pub struct Day3_2<'a> {
+    pub input: &'a str
 }
 
-impl Day3_2 {
+impl Day3_2<'_> {
     pub fn result(&self) {
-        let v_input = read_input(&self.input_file);
+        let v_input = read_input(&self.input);
         let bits_number = v_input[0].len();
 
         let mut v_oxy = v_input.clone();
@@ -70,9 +68,6 @@ impl Day3_2 {
     }
 }
 
-fn read_input(filename: &str)-> Vec<String> {
-    let contents = fs::read_to_string(filename)
-        .expect("Unable to open");
-
-    contents.split('\n').map(|s| s.to_string()).collect()
+fn read_input(input_string: &str)-> Vec<String> {
+    input_string.split('\n').map(|s| s.to_string()).collect()
 }

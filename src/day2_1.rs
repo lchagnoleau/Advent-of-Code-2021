@@ -1,12 +1,10 @@
-use std::fs;
-
-pub struct Day2_1 {
-    pub input_file: String
+pub struct Day2_1<'a> {
+    pub input: &'a str
 }
 
-impl Day2_1 {
+impl Day2_1<'_> {
     pub fn result(&self) {
-        let v_input = read_input(&self.input_file);
+        let v_input = read_input(&self.input);
         let mut h_position = 0i32; // Horizontal position
         let mut d_position = 0i32; // Depth position
         for (cmd, value) in &v_input {
@@ -21,11 +19,8 @@ impl Day2_1 {
     }
 }
 
-fn read_input(filename: &str) -> Vec<(String, i32)> {
-    let contents = fs::read_to_string(filename)
-        .expect("Unable to open");
-
-    let v_lines = contents.split('\n').collect::<Vec<&str>>();
+fn read_input(input_string: &str) -> Vec<(String, i32)> {
+    let v_lines = input_string.split('\n').collect::<Vec<&str>>();
 
     let mut v_cmd = Vec::new();
     for line in v_lines {

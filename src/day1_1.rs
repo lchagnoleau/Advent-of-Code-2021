@@ -1,12 +1,10 @@
-use std::fs;
-
-pub struct Day1_1 {
-    pub input_file: String
+pub struct Day1_1<'a> {
+    pub input: &'a str
 }
 
-impl Day1_1 {
+impl Day1_1<'_> {
     pub fn result(&self) {
-        let v_input = read_input(&self.input_file);
+        let v_input = read_input(&self.input);
 
         let mut nb_of_element_sup_as_prev = 0;
         for i in 1..v_input.len() {
@@ -18,9 +16,12 @@ impl Day1_1 {
     }
 }
 
-fn read_input(filename: &str)-> Vec<i32> {
-    let contents = fs::read_to_string(filename)
-        .expect("Unable to open");
-
-    contents.split('\n').map(|x| x.parse::<i32>().unwrap()).collect::<Vec<i32>>()
+fn read_input(input_string: &str)-> Vec<i32> {
+    input_string.to_string().split('\n').map(|x| x.parse::<i32>().unwrap()).collect::<Vec<i32>>()
 }
+
+//#[test]
+//fn result_test() {
+//    let t = Day1_1
+//    assert_eq!(2 + 2, 4);
+//}
